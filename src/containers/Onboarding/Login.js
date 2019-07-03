@@ -15,25 +15,52 @@ import types from '../../context/types'
 
 type Props = {};
 
-function App() {
+function LoginForm() {
   const { state, dispatch, actions } = useContext(StoreContext);
   const [techInput, setTechInput] = useState("");
 
   return (
     <View>
-      <Text>LOGIN SCREEN</Text>
+      <Text>
+        Username
+      </Text>
+      <TextInput
+        name="tech"
+        value={techInput}
+        onChange={event => setTechInput(event.nativeEvent.text)}
+      />
+      <Text>
+        Password
+      </Text>
+      <TextInput
+        name="tech"
+        value={techInput}
+        onChange={event => setTechInput(event.nativeEvent.text)}
+      />
+      {/* <Button
+        title="actions"
+        onPress={() => actions.addTechIfNotInList(techInput)}
+      />
+      <Button
+        title="dispatch"
+        onPress={() =>
+          dispatch({ type: types.ADD_TO_TECH_LIST, payload: techInput })
+        }
+      /> */}
+
+      
     </View>
   );
 }
 
-export default StartScreen = () => {
+export default StartScreen = (props) => {
   return (
     <View>
       <Button
-        title="Go to Details"
-        onPress={() => this.props.navigation.navigate('Login')}
+        title="Go BACK"
+        onPress={() => props.navigation.goBack()}
       />
-      <App />
+      <LoginForm />
     </View>
     
   )
