@@ -10,14 +10,15 @@ import React, { Component, useContext, useState } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 import { StoreContext } from '../../context/StoreContext';
-import types from '../../context/types'
+import { MAIN } from '../../context/types'
 
 
 type Props = {};
 
 function LoginForm() {
   const { state, dispatch, actions } = useContext(StoreContext);
-  const [techInput, setTechInput] = useState("");
+  const [username, setUsernameInput] = useState("");
+  const [password, setPasswordInput] = useState("");
 
   return (
     <View>
@@ -25,30 +26,20 @@ function LoginForm() {
         Username
       </Text>
       <TextInput
-        name="tech"
-        value={techInput}
-        onChange={event => setTechInput(event.nativeEvent.text)}
+        value={username}
+        onChange={event => setUsernameInput(event.nativeEvent.text)}
       />
       <Text>
         Password
       </Text>
       <TextInput
-        name="tech"
-        value={techInput}
-        onChange={event => setTechInput(event.nativeEvent.text)}
-      />
-      {/* <Button
-        title="actions"
-        onPress={() => actions.addTechIfNotInList(techInput)}
+        value={password}
+        onChange={event => setPasswordInput(event.nativeEvent.text)}
       />
       <Button
-        title="dispatch"
-        onPress={() =>
-          dispatch({ type: types.ADD_TO_TECH_LIST, payload: techInput })
-        }
-      /> */}
-
-      
+        title="actions"
+        onPress={() => actions.addTechIfNotInList({ username, password})}
+      />
     </View>
   );
 }

@@ -10,13 +10,14 @@ import React, { Component, useContext, useState } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 import { StoreContext } from '../../context/StoreContext';
-import types from '../../context/types'
+import { MAIN } from '../../context/types'
 
 
 type Props = {};
 
 function App() {
   const { state, dispatch, actions } = useContext(StoreContext);
+  const { main: { techList } } = state
   const [techInput, setTechInput] = useState("");
 
   return (
@@ -37,16 +38,16 @@ function App() {
       <Button
         title="dispatch"
         onPress={() =>
-          dispatch({ type: types.ADD_TO_TECH_LIST, payload: techInput })
+          dispatch({ type: MAIN.ADD_TO_TECH_LIST, payload: techInput })
         }
       />
 
       <View>
         <Text>
-          state.techList
+          state.main.techList
         </Text>
       </View>
-      {state.techList.map(tech => (
+      {techList.map(tech => (
         <View key={tech}>
           <Text>{tech}</Text>
           <Button
@@ -62,7 +63,6 @@ function App() {
 }
 
 export default StartScreen = (props) => {
-  console.log('StartScreen this.props', props);
   return (
     <View>
       <App />

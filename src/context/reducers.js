@@ -1,29 +1,26 @@
 import types from "./types";
 
-const initialState = {
-  techList: ["TypeScript", "React Hooks"]
-};
+// const initialState = {
+//   techList: ["TypeScript", "React Hooks"]
+// };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.SET_TECH_LIST:
-      return {
-        ...state,
-        techList: action.payload
-      };
-    case types.ADD_TO_TECH_LIST:
-      return {
-        ...state,
-        techList: [...state.techList, action.payload]
-      };
-    case types.REMOVE_FROM_TECH_LIST:
-      return {
-        ...state,
-        techList: state.techList.filter(
-          tech => tech !== action.payload)
-      };
-    default:
-      throw new Error("Unexpected action");
-  }
-};
-export { initialState, types, reducer };
+// import combineReducers from './reducers/combineReducers';
+import combineStores from './reducers/combineStores'
+import * as main from './reducers/main';
+import * as auth from './reducers/auth';
+
+// const reducer = combineReducers({
+//   main,
+//   auth
+// });
+const combinedStore = combineStores({
+  main,
+  auth
+})
+
+const { rootInitialState, rootReducer } = combinedStore;
+
+export { rootInitialState, types, rootReducer }
+
+
+// export { initialState, types, reducer };

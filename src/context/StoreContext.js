@@ -1,14 +1,14 @@
 import React, { createContext, useReducer, useEffect} from 'react';
 import { useActions } from './actions';
-import { initialState, reducer} from './reducers';
+import { rootInitialState, rootReducer} from './reducers';
 
 
 
-const StoreContext = createContext(initialState);
+const StoreContext = createContext(rootInitialState);
 
 const StoreProvider = ({ children }) => {
   // Get state and dispatch from Reacts new API useReducer. 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(rootReducer, rootInitialState);
   // Get actions from useActions and pass it to Context
   const actions = useActions(state, dispatch);
   // Log new state
