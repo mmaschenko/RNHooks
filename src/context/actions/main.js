@@ -1,6 +1,6 @@
-// module pattern
+import { AUTH, MAIN } from "../types";
 
-import { AUTH, MAIN } from "./types";
+import { mainActions } from './'
 export const useActions = (state, dispatch) => {
   const { main } = state;
   function addTechIfNotInList(newTech) {
@@ -12,11 +12,11 @@ export const useActions = (state, dispatch) => {
     }
   }
 
-  function loginUser({username, password}) {
+  function loginUser({ username, password }) {
     dispatch({ type: AUTH.LOGIN_SHOW_LOADER });
-    if (username && password){
+    if (username && password) {
       dispatch({ type: AUTH.LOGIN_SUCCESS });
-      setTimeout(()=>{
+      setTimeout(() => {
 
       }, 3000)
     } else {
