@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect} from 'react';
-import { useActions } from './actions';
+import { actionsCombiner } from './actions';
 import { rootInitialState, rootReducer} from './reducers';
 
 
@@ -10,7 +10,7 @@ const StoreProvider = ({ children }) => {
   // Get state and dispatch from Reacts new API useReducer. 
   const [state, dispatch] = useReducer(rootReducer, rootInitialState);
   // Get actions from useActions and pass it to Context
-  const actions = useActions(state, dispatch);
+  const actions = actionsCombiner(state, dispatch);
   // Log new state
   useEffect(() => console.log({ newState: state }));
   // Render state, dispatch and special case actions
