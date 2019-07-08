@@ -2,6 +2,7 @@ import { AUTH } from "../types";
 
 export const initialState = {
   // techList: ["TypeScript", "React Hooks"]
+  showLoader: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -9,7 +10,12 @@ export const reducer = (state = initialState, action) => {
     case AUTH.LOGIN_SUCCESS:
       return {
         ...state,
-        techList: action.payload
+        showLoader: false
+      };
+    case AUTH.LOGIN_SHOW_LOADER:
+      return {
+        ...state,
+        showLoader: action.data
       };
   }
 };

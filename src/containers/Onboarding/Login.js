@@ -9,6 +9,7 @@
 import React, { Component, useContext, useState } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
+import LoaderOverlay from '../../components/LoaderOverlay'
 import { StoreContext } from '../../context/StoreContext';
 import { MAIN } from '../../context/types'
 
@@ -19,6 +20,7 @@ function LoginForm() {
   const { state, dispatch, actions } = useContext(StoreContext);
   const [username, setUsernameInput] = useState("");
   const [password, setPasswordInput] = useState("");
+  const { auth: { showLoader } } = state
 
   return (
     <View>
@@ -37,9 +39,10 @@ function LoginForm() {
         onChange={event => setPasswordInput(event.nativeEvent.text)}
       />
       <Button
-        title="actions"
+        title="LOGIN"
         onPress={() => actions.loginUser({ username, password})}
       />
+      <LoaderOverlay showOverlay={showLoader} />
     </View>
   );
 }
