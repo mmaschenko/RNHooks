@@ -38,7 +38,7 @@ function LoginForm() {
       />
       <Button
         title="actions"
-        onPress={() => actions.addTechIfNotInList({ username, password})}
+        onPress={() => actions.loginUser({ username, password})}
       />
     </View>
   );

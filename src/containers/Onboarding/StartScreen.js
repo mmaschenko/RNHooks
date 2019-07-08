@@ -19,6 +19,7 @@ function App() {
   const { state, dispatch, actions } = useContext(StoreContext);
   const { main: { techList } } = state
   const [techInput, setTechInput] = useState("");
+  console.log('state', state);
 
   return (
     <View>
