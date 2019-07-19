@@ -21,6 +21,11 @@
 //   - create new hook use....
 // 3) Redux + Hooks
 
+// v chem profit hooks mogut sprosit na doklade
+// esli ne value v provider
+// lifecycle + updating render
+// useState with object example
+
 import React, { Component, useContext, useState, createContext } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
@@ -54,6 +59,7 @@ function NavBar(){
     // <UserContext.Consumer>
     //   {(value) => <Text>Hello {value}</Text>} // 2 return
     // </UserContext.Consumer>
+    <UserContext.Consumer>
       {(value) => <Text>Hello {value}</Text>}
     </UserContext.Consumer>
   )
@@ -107,7 +113,6 @@ function App() {
           dispatch({ type: MAIN.ADD_TO_TECH_LIST, payload: techInput })
         }
       />
-
       <View>
         <Text>
           state.main.techList
