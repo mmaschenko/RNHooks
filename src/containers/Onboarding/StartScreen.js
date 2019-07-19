@@ -6,11 +6,78 @@
  * @flow
  */
 
-import React, { Component, useContext, useState } from 'react';
+
+// Доклад
+// 1) Context
+// 2) Hooks:
+// useState
+//   - useState does not automatically merge update objects
+//     - multiple https://daveceddia.com/usestate-hook-examples/
+// useEffect
+//   - replace componentDidMount и componentDidUpdate
+//     - array, []
+// useContext
+// useProvider
+//   - create new hook use....
+// 3) Redux + Hooks
+
+import React, { Component, useContext, useState, createContext } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 import { StoreContext } from '../../context/StoreContext';
 import { MAIN } from '../../context/types'
+
+const UserContext = React.createContext();
+
+
+class App1 extends React.Component{
+  state ={
+    user: 'Mikle',
+    lastname: '123'
+  }
+
+  render(){
+    const {user, lastname} = this.state;
+    return(
+      // <UserContext.Provider value={this.state.user}>
+      <UserContext.Provider value={{user, lastname}}>
+        <NavBar/>
+      </UserContext.Provider>
+    )
+  }
+}
+
+function NavBar(){
+  // const value = useContext(UserContext)
+  // const {user, lastname} = useContext(UserContext)
+  return(
+    // <UserContext.Consumer>
+    //   {(value) => <Text>Hello {value}</Text>} // 2 return
+    // </UserContext.Consumer>
+      {(value) => <Text>Hello {value}</Text>}
+    </UserContext.Consumer>
+  )
+}
+
+
+    // <ThemeContext.Provider value={theme}>   // multiple providers
+    //   <UserContext.Provider value={signedInUser}>
+    //     <Layout />
+    //   </UserContext.Provider>
+    // </ThemeContext.Provider>
+
+
+    // <ThemeContext.Consumer>
+    //   {theme => (
+    //     <UserContext.Consumer>
+    //       {user => (
+    //         <ProfilePage user={user} theme={theme} />
+    //       )}
+    //     </UserContext.Consumer>
+    //   )}
+    // </ThemeContext>
+    // <UserContext.Consumer>
+
 
 
 type Props = {};
@@ -19,8 +86,6 @@ function App() {
   const { state, dispatch, actions } = useContext(StoreContext);
   const { main: { techList } } = state
   const [techInput, setTechInput] = useState("");
-  console.log('state', state);
-
   return (
     <View>
       <Text>Hooks11 - The Redux Killer</Text>
