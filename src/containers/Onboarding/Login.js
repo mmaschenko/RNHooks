@@ -17,11 +17,11 @@ import { MAIN } from '../../context/types'
 type Props = {};
 
 function LoginForm() {
+ 
   const { state, dispatch, actions } = useContext(StoreContext);
   const [username, setUsernameInput] = useState("");
   const [password, setPasswordInput] = useState("");
   const { auth: { showLoader } } = state
-
   return (
     <View>
       <Text>
@@ -29,7 +29,7 @@ function LoginForm() {
       </Text>
       <TextInput
         value={username}
-        onChange={event => setUsernameInput(event.nativeEvent.text)}
+        onChange={event => setUsernameInput('hello')}
       />
       <Text>
         Password
